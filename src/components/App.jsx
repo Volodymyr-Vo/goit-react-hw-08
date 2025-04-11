@@ -6,6 +6,7 @@ import { PrivateRoute } from "../components/PrivateRoute";
 import { RestrictedRoute } from "../components/RestrictedRoute";
 import { refreshUser } from "../redux/auth/operations";
 import { selectIsRefreshing } from "../redux/auth/selectors";
+
 // import ContactForm from "./ContactForm/ContactForm";
 // import SearchBox from "./SearchBox/SearchBox";
 // import ContactList from "./ContactList/ContactList";
@@ -26,7 +27,7 @@ export default function App() {
   return isRefreshing ? (
     <strong>Refreshing user...</strong>
   ) : (
-    <div className={css.app}>
+    <div>
       <AppBar />
       <Suspense fallback={null}>
         <Routes>

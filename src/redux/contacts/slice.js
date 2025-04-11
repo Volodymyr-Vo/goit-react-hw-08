@@ -3,7 +3,7 @@ import {
   fetchContacts,
   addContact,
   deleteContact,
-} from "../contacts/operations";
+} from "../../redux/contacts/operations";
 
 const contactsSlice = createSlice({
   name: "contacts",
@@ -48,5 +48,6 @@ export const selectFilteredContacts = createSelector(
       contact.name.toLowerCase().includes(filter.toLowerCase())
     )
 );
+export const contactsReducer = contactsSlice.reducer;
 
-export default contactsSlice.reducer;
+// export default contactsSlice.reducer;
