@@ -6,9 +6,11 @@ const successAdd = () => toast.success("Contact successfully added!");
 const successDelete = () => toast.success("Contact successfully deleted!");
 const successEdit = () => toast.success("Contact successfully updated!");
 const errorNotification = () => toast.error("Oops, something went wrong");
+
 export const fetchContacts = createAsyncThunk(
   "contacts/fetchAll",
-  async ({ signal }, thunkAPI) => {
+  async (_, thunkAPI) => {
+    const { signal } = thunkAPI;
     try {
       const { data } = await api.get("/contacts", { signal });
       return data;
