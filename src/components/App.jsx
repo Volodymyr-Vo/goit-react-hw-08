@@ -5,7 +5,7 @@ import { AppBar } from "../components/AppBar/AppBar";
 import { PrivateRoute } from "../components/PrivateRoute";
 import { RestrictedRoute } from "../components/RestrictedRoute";
 import { refreshUser } from "../redux/auth/operations";
-import { selectIsRefreshing } from "../redux/auth/selectors";
+import { selectIsRefreshing, selectToken } from "../redux/auth/selectors";
 
 const HomePage = lazy(() => import("../pages/HomePage/HomePage"));
 const RegisterPage = lazy(() => import("../pages/RegisterPage/RegistrerPage"));
@@ -15,10 +15,15 @@ const ContactsPage = lazy(() => import("../pages/ContactsPage/ContactsPage"));
 export default function App() {
   const dispatch = useDispatch();
   const isRefreshing = useSelector(selectIsRefreshing);
+  const token = useSelector(selectToken);
 
   useEffect(() => {
-    dispatch(refreshUser());
-  }, [dispatch]);
+    if (token) {
+      dispatch(refreshUser());
+    }
+  }, [dispatch, token]);
+
+  if (isRefreshing) return <p>Loading user...</p>;
 
   return isRefreshing ? null : (
     <div>
