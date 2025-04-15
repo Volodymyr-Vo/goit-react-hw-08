@@ -67,7 +67,7 @@ export const refreshUser = createAsyncThunk(
       const { data } = await api.get("/users/current");
       return data;
     } catch (error) {
-      thunkAPI.rejectWithValue(error.message);
+      return thunkAPI.rejectWithValue(error.message);
     }
   }
 );
